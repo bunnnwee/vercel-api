@@ -6,8 +6,8 @@ const fs = require('fs');
 const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 const jobId = "Fuck you";
-app.post('/submit', (req, res) => {
-    jobId = req.body.jobId;
+app.get('/submit', (req, res) => {
+    jobId = req.query.jobId;
 })
 app.get('/', (req, res) => {
     res.send(jobId)
