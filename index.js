@@ -5,28 +5,13 @@ const fs = require('fs');
 
 const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
-
+const jobId = "Fuck you";
 app.post('/submit', (req, res) => {
-    const jobId = req.body.jobId;
-
-    fs.writeFile("jobid.txt", jobId, (err) => {
-        if (err) {
-            console.error("Error writing to file:", err);
-            res.status(500).send("Internal Server Error");
-        } else {
-            console.log("Job ID saved successfully.");
-            res.send("Job ID saved successfully.");
-        }
-    });
+    jobId = req.body.jobId;
 })
 app.get('/', (req, res) => {
-    fs.readFile("jobid.txt", "utf8", (err, data) => {
-        if (data) {
-            res.send(data);
-        }
-    })
+    res.send(jobId)
 }
-
 );
 
 app.listen(PORT, () => {
